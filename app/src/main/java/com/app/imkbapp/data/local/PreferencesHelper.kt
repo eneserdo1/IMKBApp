@@ -49,8 +49,6 @@ class PreferencesHelper @Inject constructor(context: Context) {
         }
 
 
-
-
     fun clearSharedPreferenes(){
         mEditör.clear()
         mEditör.commit()

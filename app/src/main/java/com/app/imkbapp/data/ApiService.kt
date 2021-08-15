@@ -1,5 +1,6 @@
 package com.app.imkbapp.data
 
+import com.app.imkbapp.model.Detail.StockDetailResponse
 import com.app.imkbapp.model.Handshake.HandShakeResponse
 import com.app.imkbapp.model.Stocks.StocksResponse
 import retrofit2.http.Body
@@ -17,4 +18,9 @@ interface ApiService {
     @Headers("Content-Type: application/json")
     @POST("api/stocks/list")
     suspend fun getStocks(@Body bodyMap:Map<String,String>,@Header("X-VP-Authorization") token:String): StocksResponse
+
+
+    @Headers("Content-Type: application/json")
+    @POST("api/stocks/detail")
+    suspend fun getStocksDetail(@Body bodyMap:Map<String,String>,@Header("X-VP-Authorization") token:String): StockDetailResponse
 }

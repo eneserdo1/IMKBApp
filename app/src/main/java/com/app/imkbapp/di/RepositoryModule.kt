@@ -1,7 +1,7 @@
 package com.app.imkbapp.di
 
 import com.app.imkbapp.data.ApiService
-import com.app.imkbapp.data.remote.RemoteDataSource
+import com.app.imkbapp.data.remoteDataSource.RemoteDataSource
 import com.app.imkbapp.data.repository.RemoteRepository
 import dagger.Module
 import dagger.Provides

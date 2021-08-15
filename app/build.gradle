@@ -46,6 +46,10 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.3.1'
     implementation 'com.google.android.material:material:1.4.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.0'
+    implementation 'androidx.navigation:navigation-fragment:2.3.5'
+    implementation 'androidx.navigation:navigation-ui:2.3.5'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
@@ -56,10 +60,12 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:4.4.0"
 
     implementation "androidx.recyclerview:recyclerview:1.1.0"
-
+    //Chart for graoh
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+    //coroutines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.9"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9"
-
+    //lifecycle
     implementation "android.arch.lifecycle:extensions:1.1.1"
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
     // viewmodel
@@ -67,6 +73,7 @@ dependencies {
     // Livedata
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0"
 
+    //hilt
     implementation "com.google.dagger:hilt-android:2.35"
     kapt "com.google.dagger:hilt-compiler:2.35"
     implementation "androidx.activity:activity-ktx:1.2.0-beta01"

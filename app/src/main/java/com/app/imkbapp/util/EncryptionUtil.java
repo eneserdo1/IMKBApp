@@ -15,7 +15,6 @@ import javax.crypto.spec.SecretKeySpec;
 
 public class EncryptionUtil {
     private final static String alg = "AES";
-    // Definición del modo de cifrado a utilizar
     private final static String cI = "AES/CBC/PKCS7Padding";
 
 
@@ -36,7 +35,6 @@ public class EncryptionUtil {
         byte[] enc = Base64.decode(encrypted, Base64.DEFAULT);
         cipher.init(Cipher.DECRYPT_MODE, skeySpec, ivParameterSpec);
         byte[] decrypted = cipher.doFinal(enc);
-        //return new String(Base64.encode(decrypted, Base64.DEFAULT));
         return new String(decrypted);
     }
 

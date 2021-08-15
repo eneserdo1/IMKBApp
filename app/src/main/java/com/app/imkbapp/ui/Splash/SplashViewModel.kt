@@ -26,6 +26,7 @@ class SplashViewModel @Inject constructor(val repository: RemoteRepository) : Vi
         bodyMap["deviceModel"] = deviceModel
         bodyMap["manifacturer"] = manifacturer
 
+        _mutableProgressbarState.value = true
         viewModelScope.launch {
             repository.fetchHandShake(bodyMap).collect {
                 when(it.status){

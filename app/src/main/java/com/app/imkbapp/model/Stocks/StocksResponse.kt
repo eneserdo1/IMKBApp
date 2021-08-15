@@ -17,7 +17,7 @@ data class StocksResponse(
             @SerializedName("offer") val offer:String,
             @SerializedName("price") val price:String,
             @SerializedName("volume") val volume:Double,
-            @SerializedName("symbol") val symbol:String
+            @SerializedName("symbol") var symbol:String
     )
 
     data class Status(

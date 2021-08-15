@@ -3,16 +3,18 @@ package com.app.imkbapp.ui.Splash
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.provider.Settings
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
-import com.app.imkbapp.databinding.ActivityMainBinding
+import com.app.imkbapp.R
 import com.app.imkbapp.databinding.ActivitySplashBinding
-import com.app.imkbapp.ui.Main.MainActivity
-import com.app.imkbapp.ui.Main.MainViewModel
+import com.app.imkbapp.ui.NavigationDrawerActivity
 import com.app.imkbapp.util.PhoneUtil
 import com.app.imkbapp.util.getPref
+import com.app.imkbapp.util.hideProgressDialog
+import com.app.imkbapp.util.showProgressDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -26,20 +28,27 @@ class SplashActivity : AppCompatActivity() {
         binding = ActivitySplashBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
+        getRequestResources()
+        observers()
+        buttonsListener()
+    }
+
+    private fun getRequestResources() {
+        val id = Settings.Secure.getString(contentResolver, Settings.Secure.ANDROID_ID)
         val manifacturer = PhoneUtil.getManifacturer()
         val deviceModel = PhoneUtil.getDeviceName()
         val platfomName = "Android"
         val systemVersion = android.os.Build.VERSION.RELEASE
 
-        viewModel.getHandShake(Settings.Secure.getString(contentResolver, Settings.Secure.ANDROID_ID),systemVersion,platfomName,deviceModel,manifacturer)
-        observers()
-        buttonsListener()
+        viewModel.getHandShake(id,systemVersion,platfomName,deviceModel,manifacturer)
     }
 
     private fun buttonsListener() {
         binding.fetchDataButton.setOnClickListener {
-            val intent = Intent(this,MainActivity::class.java)
+            val intent = Intent(this, NavigationDrawerActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(R.anim.slide_in_left,R.anim.slide_out_left)
         }
     }
 
@@ -50,9 +59,25 @@ class SplashActivity : AppCompatActivity() {
                 getPref(this).aesKey = response.aesKey
                 getPref(this).authToken = response.authorization
             }else{
-                Toast.makeText(this,"Bir hata oluştu", Toast.LENGTH_LONG).show()
+                Toast.makeText(this,getString(R.string.bir_hata_olusut), Toast.LENGTH_LONG).show()
             }
         })
+
+
+        viewModel._mutableProgressbarState.observe(this, Observer { response->
+            response?.let {
+                if (it){
+                    this.showProgressDialog()
+                }else{
+                    hideProgressDialog()
+                }
+            }
+        })
+    }
+
+    override fun onStop() {
+        super.onStop()
+        hideProgressDialog()
     }
 
 }

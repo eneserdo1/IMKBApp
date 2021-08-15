@@ -1,73 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
-    android:paddingVertical="2dp"
-    android:layout_marginVertical="3dp"
-    android:stretchColumns="1,2,3,4,5,6,7">
+    android:paddingVertical="3dp"
+    android:weightSum="7"
+    android:orientation="horizontal"
+    android:gravity="center"
+    >
 
-    <TableRow>
 
         <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:id="@+id/row_name"
-            android:layout_column="1"
-            android:layout_gravity="center"
+            android:gravity="center"
             tools:text="Sembol"
-            android:textColor="@color/black"
-            android:textSize="14sp" />
+            />
 
         <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:id="@+id/row_price"
-            android:layout_column="1"
-            android:layout_gravity="center"
+            android:gravity="center"
             tools:text="Fiyat"
-            android:textColor="@color/black"
-            android:textSize="14sp" />
+        />
 
         <TextView
             android:id="@+id/row_difference"
-            android:layout_column="1"
-            android:layout_gravity="center"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
             tools:text="Fark"
-            android:textColor="@color/black"
-            android:textSize="14sp" />
+           />
 
         <TextView
             android:id="@+id/row_volume"
-            android:layout_column="1"
-            android:layout_gravity="center"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
             tools:text="Hacim"
-            android:textColor="@color/black"
-            android:textSize="14sp" />
+            />
 
         <TextView
             android:id="@+id/row_buying"
-            android:layout_column="1"
-            android:layout_gravity="center"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
             tools:text="Alış"
-            android:textColor="@color/black"
-            android:textSize="14sp" />
+     />
 
         <TextView
             android:id="@+id/row_selling"
-            android:layout_column="1"
-            android:layout_gravity="center"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
             tools:text="Satış"
-            android:textColor="@color/black"
-            android:textSize="14sp" />
+  />
 
         <ImageView
             android:id="@+id/row_change"
-            android:layout_column="1"
-            android:layout_gravity="center"
-            android:background="@drawable/arrow_up_24"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
              />
 
-    </TableRow>
 
 
-</TableLayout>
+</LinearLayout>
 
 
