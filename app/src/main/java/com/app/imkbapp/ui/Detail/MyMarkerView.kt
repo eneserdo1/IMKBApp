@@ -1,4 +1,4 @@
-package com.app.imkbapp.ui.detail
+package com.app.imkbapp.ui.Detail
 
 import android.content.Context
 import android.widget.TextView

@@ -1,6 +1,5 @@
-package com.app.imkbapp.ui.home
+package com.app.imkbapp.ui.Home
 
-import android.inputmethodservice.Keyboard
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -18,36 +17,31 @@ import com.app.imkbapp.R
 
 import com.app.imkbapp.databinding.FragmentHomeBinding
 import com.app.imkbapp.model.Stocks.StocksResponse
-import com.app.imkbapp.ui.home.adapter.ItemClickListener
-import com.app.imkbapp.ui.home.adapter.StockAdapter
+import com.app.imkbapp.ui.Base.BaseFragment
+import com.app.imkbapp.ui.Home.adapter.ItemClickListener
+import com.app.imkbapp.ui.Home.adapter.StockAdapter
 import com.app.imkbapp.util.Constants.Companion._mutableSelected
 import com.app.imkbapp.util.EncryptionUtil
 import com.app.imkbapp.util.getPref
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class HomeFragment : Fragment() {
+class HomeFragment :BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
     private val TAG = "HomeFragment "
-    private lateinit var binding: FragmentHomeBinding
     private val viewModel: HomeViewModel by viewModels<HomeViewModel>()
     private lateinit var stockAdapter: StockAdapter
 
 
-    override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentHomeBinding.inflate(layoutInflater,container,false)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         initRecyclerview()
-        val period = EncryptionUtil.encrypt(getPref(requireContext()).aesKey, getPref(requireContext()).aesIV,"all")
-        viewModel.getStockList(requireContext(), period)
         Observers()
         buttonsListener()
         searchviewListener()
 
-        return binding.root
+        val period = EncryptionUtil.encrypt(getPref(requireContext()).aesKey, getPref(requireContext()).aesIV,"all")
+        viewModel.getStockList(requireContext(), period)
     }
 
     private fun searchviewListener() {

@@ -7,20 +7,18 @@ import com.app.imkbapp.model.Resource
 import com.app.imkbapp.model.Stocks.StocksResponse
 import javax.inject.Inject
 
-class RemoteDataSource @Inject constructor(val apiService:ApiService){
+class RemoteDataSource @Inject constructor(val apiService:ApiService):BaseDataSource(){
 
     suspend fun getHandShake(bodyMap:Map<String,String>): Resource<HandShakeResponse> {
-        val response = apiService.getHandShake(bodyMap)
-        return Resource.success(response)
+
+        return getResponse(request = {apiService.getHandShake(bodyMap)},defaultErrorMessage = "Error get handshake response")
     }
 
     suspend fun getStocks(bodyMap:Map<String,String>,token:String): Resource<StocksResponse> {
-        val response = apiService.getStocks(bodyMap,token)
-        return Resource.success(response)
+        return getResponse(request = {apiService.getStocks(bodyMap,token)},defaultErrorMessage = "Error get stocks")
     }
 
     suspend fun getStockDetail(bodyMap:Map<String,String>,token:String): Resource<StockDetailResponse> {
-        val response = apiService.getStocksDetail(bodyMap,token)
-        return Resource.success(response)
+        return getResponse(request = {apiService.getStocksDetail(bodyMap,token)},defaultErrorMessage = "Error get stock detail")
     }
 }

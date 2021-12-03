@@ -1,9 +1,7 @@
-package com.app.imkbapp.ui.home.adapter
+package com.app.imkbapp.ui.Home.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Filter
-import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
 import com.app.imkbapp.R
 import com.app.imkbapp.databinding.RecyclerviewItemStockBinding

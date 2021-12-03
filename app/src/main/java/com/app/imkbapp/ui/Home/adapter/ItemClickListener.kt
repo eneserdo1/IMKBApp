@@ -1,4 +1,4 @@
-package com.app.imkbapp.ui.home.adapter
+package com.app.imkbapp.ui.Home.adapter
 
 interface ItemClickListener {
 
