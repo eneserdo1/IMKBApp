@@ -9,7 +9,9 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import com.app.imkbapp.R
+import com.app.imkbapp.databinding.ActivityMainBinding
 import com.app.imkbapp.databinding.ActivitySplashBinding
+import com.app.imkbapp.ui.Base.BaseActivity
 import com.app.imkbapp.ui.NavigationDrawerActivity
 import com.app.imkbapp.util.PhoneUtil
 import com.app.imkbapp.util.getPref
@@ -18,17 +20,12 @@ import com.app.imkbapp.util.showProgressDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class SplashActivity : AppCompatActivity() {
-    private lateinit var binding: ActivitySplashBinding
+class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding::inflate) {
     private val viewModel: SplashViewModel by viewModels<SplashViewModel>()
 
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivitySplashBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
-
+    override fun onStart() {
+        super.onStart()
         getRequestResources()
         observers()
         buttonsListener()

@@ -1,4 +1,4 @@
-package com.app.imkbapp.ui.detail
+package com.app.imkbapp.ui.Detail
 
 import android.graphics.Color
 import android.graphics.drawable.Drawable
@@ -15,6 +15,7 @@ import androidx.lifecycle.Observer
 import com.app.imkbapp.R
 import com.app.imkbapp.databinding.FragmentDetailBinding
 import com.app.imkbapp.model.Detail.StockDetailResponse
+import com.app.imkbapp.ui.Base.BaseFragment
 import com.app.imkbapp.util.EncryptionUtil
 import com.app.imkbapp.util.getPref
 import com.app.imkbapp.util.hideProgressDialog
@@ -32,30 +33,23 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 @AndroidEntryPoint
-class DetailFragment : Fragment() {
+class DetailFragment : BaseFragment<FragmentDetailBinding>(FragmentDetailBinding::inflate) {
 
     private val TAG = "DetailFragment "
-    private lateinit var binding : FragmentDetailBinding
     private val viewModel: DetailViewModel by viewModels<DetailViewModel>()
     private var id : String?=null
     private var graphData: ArrayList<StockDetailResponse.GraphicData> = arrayListOf()
     private var chartPeriod = ArrayList<String>()
 
 
-    override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentDetailBinding.inflate(layoutInflater,container,false)
-
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         id = requireArguments().getString("id")
         id?.let {
             val encryptedId = EncryptionUtil.encrypt(getPref(requireContext()).aesKey, getPref(requireContext()).aesIV,it)
             viewModel.getStockDetail(requireContext(),encryptedId)
         }
         observers()
-        return binding.root
     }
 
     private fun observers() {
@@ -114,11 +108,8 @@ class DetailFragment : Fragment() {
         binding.lineChart.setDragOffsetX(20f)
         binding.lineChart.setDragOffsetY(10f)
         binding.lineChart.fitScreen()
-        var i = 0
         for (item in graphData) {
             values.add(Entry(item.day!!.toFloat(), item.value!!.toFloat()))
-
-            i++
         }
         Collections.sort(values, EntryXComparator())
         val set1: LineDataSet

@@ -14,7 +14,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.app.imkbapp.R
 import com.app.imkbapp.databinding.ActivityNavigationDrawerBinding
-import com.app.imkbapp.ui.home.HomeViewModel
+import com.app.imkbapp.ui.Base.BaseActivity
 import com.app.imkbapp.util.Constants.Companion._mutableSelected
 import com.app.imkbapp.util.EncryptionUtil
 import com.app.imkbapp.util.getPref
@@ -23,16 +23,12 @@ import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class NavigationDrawerActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelectedListener {
+class NavigationDrawerActivity : BaseActivity<ActivityNavigationDrawerBinding>(ActivityNavigationDrawerBinding::inflate),NavigationView.OnNavigationItemSelectedListener {
     var drawerLayout: DrawerLayout?=null
     private lateinit var appBarConfiguration: AppBarConfiguration
-    private lateinit var binding: ActivityNavigationDrawerBinding
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityNavigationDrawerBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
+    override fun onStart() {
+        super.onStart()
         initViews()
     }
 

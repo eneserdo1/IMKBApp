@@ -1,4 +1,4 @@
-package com.app.imkbapp.ui.home
+package com.app.imkbapp.ui.Home
 
 import android.app.Application
 import android.content.Context
@@ -8,7 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.app.imkbapp.data.repository.RemoteRepository
 import com.app.imkbapp.model.Status
 import com.app.imkbapp.model.Stocks.StocksResponse
-import com.app.imkbapp.ui.home.adapter.StockAdapter
+import com.app.imkbapp.ui.Home.adapter.StockAdapter
 import com.app.imkbapp.util.EncryptionUtil
 import com.app.imkbapp.util.getPref
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -76,7 +76,6 @@ class HomeViewModel @Inject constructor(val repository: RemoteRepository,applica
             adapter.stockList = adapter.originalList
             adapter.notifyDataSetChanged()
         }
-
     }
 
 }
