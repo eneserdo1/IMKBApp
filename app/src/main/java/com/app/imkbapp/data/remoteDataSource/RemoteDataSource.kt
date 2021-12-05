@@ -10,7 +10,6 @@ import javax.inject.Inject
 class RemoteDataSource @Inject constructor(val apiService:ApiService):BaseDataSource(){
 
     suspend fun getHandShake(bodyMap:Map<String,String>): Resource<HandShakeResponse> {
-
         return getResponse(request = {apiService.getHandShake(bodyMap)},defaultErrorMessage = "Error get handshake response")
     }
 
